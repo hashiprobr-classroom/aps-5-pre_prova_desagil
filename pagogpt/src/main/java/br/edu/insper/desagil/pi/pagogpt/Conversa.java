@@ -6,7 +6,7 @@ import java.util.List;
 public class Conversa {
     private Usuario usuario;
     private List<Prompt>prompts;
-    private Conversa(Usuario usuario){
+    public Conversa(Usuario usuario){
         this.usuario=usuario;
         this.prompts=new ArrayList<>();
     }

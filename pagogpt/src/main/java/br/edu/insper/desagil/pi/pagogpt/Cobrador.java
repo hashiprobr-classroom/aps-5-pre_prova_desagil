@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Cobrador {
     private List<Conversa>conversas;
-    private Cobrador(List<Conversa>conversas){
+    public Cobrador(List<Conversa>conversas){
         this.conversas=conversas;
     }
     public double calculaTotal(Usuario usuario){

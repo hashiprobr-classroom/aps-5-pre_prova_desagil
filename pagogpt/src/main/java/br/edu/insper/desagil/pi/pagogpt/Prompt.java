@@ -3,7 +3,7 @@ package br.edu.insper.desagil.pi.pagogpt;
 public abstract class Prompt {
     private String pergunta;
     private String resposta;
-    Prompt(String pergunta, String resposta){
+    public Prompt(String pergunta, String resposta){
         this.pergunta=pergunta;
         this.resposta=resposta;
     }
