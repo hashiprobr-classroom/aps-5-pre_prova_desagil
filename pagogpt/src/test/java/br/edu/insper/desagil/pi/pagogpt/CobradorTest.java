@@ -1,6 +1,7 @@
 package br.edu.insper.desagil.pi.pagogpt;
 
 import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -10,7 +11,8 @@ public class CobradorTest {
     @Test
     void nenhumaValida() {
         Usuario u = new Usuario("a@a", "Ana");
-        Cobrador cobrador = new Cobrador(List.of());
+        List<Conversa> conversas = new ArrayList<>();
+        Cobrador cobrador = new Cobrador(conversas);
 
         assertEquals(0.0, cobrador.calculaTotal(u), 0.01);
     }
@@ -33,13 +35,18 @@ public class CobradorTest {
         when(c3.getUsuario()).thenReturn(u3);
         when(c3.calculaSubTotal()).thenReturn(3.5);
 
-        Cobrador cobrador = new Cobrador(List.of(c1, c2, c3));
+        List<Conversa> conversas = new ArrayList<>();
+        conversas.add(c1);
+        conversas.add(c2);
+        conversas.add(c3);
+
+        Cobrador cobrador = new Cobrador(conversas);
         assertEquals(1.5, cobrador.calculaTotal(u1), 0.01);
     }
 
     @Test
     void duasValidas() {
-        Usuario u1 = new Usuario("a@a", "Ana");
+        Usuario u1 = new Usuario("a@a.com", "Ana");
 
         Conversa c1 = mock(Conversa.class);
         when(c1.getUsuario()).thenReturn(u1);
@@ -49,12 +56,17 @@ public class CobradorTest {
         when(c2.getUsuario()).thenReturn(u1);
         when(c2.calculaSubTotal()).thenReturn(2.3);
 
-        Usuario outro = new Usuario("b@b", "Bia diva");
+        Usuario outro = new Usuario("b@b.", "Bia diva");
         Conversa c3 = mock(Conversa.class);
         when(c3.getUsuario()).thenReturn(outro);
         when(c3.calculaSubTotal()).thenReturn(3.4);
 
-        Cobrador cobrador = new Cobrador(List.of(c1, c2, c3));
+        List<Conversa> conversas = new ArrayList<>();
+        conversas.add(c1);
+        conversas.add(c2);
+        conversas.add(c3);
+
+        Cobrador cobrador = new Cobrador(conversas);
         assertEquals(3.5, cobrador.calculaTotal(u1), 0.01);
     }
 
@@ -74,7 +86,12 @@ public class CobradorTest {
         when(c3.getUsuario()).thenReturn(u1);
         when(c3.calculaSubTotal()).thenReturn(3.0);
 
-        Cobrador cobrador = new Cobrador(List.of(c1, c2, c3));
+        List<Conversa> conversas = new ArrayList<>();
+        conversas.add(c1);
+        conversas.add(c2);
+        conversas.add(c3);
+
+        Cobrador cobrador = new Cobrador(conversas);
         assertEquals(6.0, cobrador.calculaTotal(u1), 0.01);
     }
 }
