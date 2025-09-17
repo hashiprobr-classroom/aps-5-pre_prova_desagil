@@ -26,7 +26,7 @@ public class Conversa {
     }
     public double calculaSubMedia() {
         if (prompts.isEmpty()) {
-            throw new IllegalArgumentException("Nenhum prompt!");
+            throw new IllegalStateException("Nenhum prompt!");
         } else {
             double total = 0.0;
             for (Prompt p : prompts) {

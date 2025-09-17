@@ -24,20 +24,20 @@ public class ConversaTest {
     void subTotal() {
 
         Prompt p1 = new PromptPago("pergunta", "resposta", 0.1);   // 8*0.1 = 0.8
-        Prompt p2 = new PromptPago("perg", "res", 0.25);           // 4*0.25 = 1.0
-        Prompt p3 = new PromptPago("pq", "r", 0.335);              // 2*0.335 = 0.67
+        Prompt p2 = new PromptPago("perg", "respostar", 0.25);           // 4*0.25 = 1.0
+        Prompt p3 = new PromptPago("pq", "respost", 0.3);              // 2*0.3 = 0.6
 
         c.adiciona(p1);
         c.adiciona(p2);
         c.adiciona(p3);
 
-        double expected = 0.8 + 1.0 + 0.67;
+        double expected = 0.8 + 1.0 + 0.6;
         assertEquals(expected, c.calculaSubTotal(), 0.01);
     }
 
     @Test
     void porPostVazio() {
-        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
+        IllegalStateException e = assertThrows(IllegalStateException.class, () -> {
             c.calculaSubMedia();
         });
 
